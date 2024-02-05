@@ -37,6 +37,12 @@ public class ProductRepositoryTest {
     }
 
     @Test
+    void testFindAllIfEmpty() {
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
+    }
+
+    @Test
     void testFindAllIfMoreThanOneProduct() {
         Product product1 = new Product();
         product1.setProductId("20c179a8-2c52-4f91-87d6-c3459f13aed7");
