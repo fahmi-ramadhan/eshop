@@ -35,7 +35,8 @@ public class ProductRepository {
         return originalProduct;
     }
 
-    public Product delete(Product product) {
+    public Product delete(String productId) {
+        Product product = findById(productId);
         productData.remove(product);
         return product;
     }
