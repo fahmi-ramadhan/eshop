@@ -26,13 +26,20 @@ public class ProductRepository {
                 return product;
             }
         }
-        return null;
+        throw new ProductNotFoundException("Product with id " + productId + " not found");
     }
 
-    public Product update(Product originalProduct, Product editedProduct) {
-        originalProduct.setProductName(editedProduct.getProductName());
-        originalProduct.setProductQuantity(editedProduct.getProductQuantity());
-        return originalProduct;
+    public Product update(Product editedProduct) {
+        Product product = findById(editedProduct.getProductId());
+        product.setProductName(editedProduct.getProductName());
+        product.setProductQuantity(editedProduct.getProductQuantity());
+        return product;
+    }
+
+    public static class ProductNotFoundException extends RuntimeException {
+        public ProductNotFoundException(String message) {
+            super(message);
+        }
     }
 
     public Product delete(Product product) {
