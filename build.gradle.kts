@@ -38,7 +38,7 @@ dependencies {
 	testImplementation("io.github.bonigarcia:selenium-jupiter:$seleniumJupiterVersion")
 	testImplementation("io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion")
 	testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
-	testRuntimeOnly("org.junit.jupiter:junit-jupyter-engine:$junitJupiterVersion")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
 }
 
 tasks.register<Test>("unitTest") {
@@ -59,6 +59,6 @@ tasks.register<Test>("functionalTest") {
 	}
 }
 
-tasks.withType<Test>().configureEach() {
+tasks.withType<Test>().configureEach {
 	useJUnitPlatform()
 }
