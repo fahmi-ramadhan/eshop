@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
-    private ProductService service = new ProductService();
+    private ProductService service = new ProductServiceImpl();
 
     @GetMapping("/create")
     public String createProductPage(Model model) {
