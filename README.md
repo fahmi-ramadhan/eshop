@@ -29,3 +29,17 @@ I think there are still so much more to improve in my code so that it follows th
 2. I think creating a new Java class similar to the prior functional test suites with the same setup procedures and instance variables can reduce the code cleanliness because it will create unnecessary code duplication, making it harder to maintain and the efficiency reduced. One possible improvement to make the code cleaner is to refactor the existing test suites by extracting common setup procedures and instance variables, like instantiating the product, into separate methods. Then, each test method can simply call these shared setup methods before running the actual test logic.
 
 </details>
+
+# Module 02: CI/CD & DevOps
+
+<details open>
+
+During the exercise, I addressed several code quality issues, such as:
+
+- Removing the public modifier from files related to testing, as the best practice in testing is to use the default modifier.
+
+- Removing field injection (@Autowired) and use constructor injection instead.
+
+Looking at the CI/CD workflows, I believe the current implementation has indeed achieved Continuous Integration and Continuous Deployment. Firstly, the CI pipeline triggers on every push to the repository, ensuring that changes are integrated frequently. Secondly, automated tests are run as part of the pipeline to validate the code changes. Lastly, the CD pipeline deploys the code to the PaaS environment automatically upon successful testing, enabling continuous deployment of new features and fixes. Overall, the process ensures that code changes are quickly validated, integrated, and deployed, meeting the principles of CI/CD.
+
+</details>
