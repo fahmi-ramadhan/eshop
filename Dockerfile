@@ -9,10 +9,10 @@ FROM docker.io/library/eclipse-temurin:21-jre-alpine AS runner
 
 ARG USER_NAME=advshop
 ARG USER_UID=1000
-ARG USER_GID=$(USER_UID}
+ARG USER_GID=${USER_UID}
 
 RUN addgroup -g ${USER_GID} ${USER_NAME} \
-    && adduser =h /opt/advshop -D -u ${USER_UID} -G ${USER_NAME} ${USER_NAME}
+    && adduser -h /opt/advshop -D -u ${USER_UID} -G ${USER_NAME} ${USER_NAME}
 
 USER ${USER_NAME}
 WORKDIR /opt/advshop
