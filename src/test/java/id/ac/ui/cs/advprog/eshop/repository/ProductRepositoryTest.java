@@ -75,6 +75,9 @@ public class ProductRepositoryTest {
         productRepository.create(product);
 
         Product foundProduct = productRepository.findById("20c179a8-2c52-4f91-87d6-c3459f13aed7");
+        assertThrows(ProductNotFoundException.class, () -> {
+            productRepository.findById("non-existing-id");
+        });
         assertEquals(product.getProductId(), foundProduct.getProductId());
         assertEquals(product.getProductName(), foundProduct.getProductName());
         assertEquals(product.getProductQuantity(), foundProduct.getProductQuantity());
