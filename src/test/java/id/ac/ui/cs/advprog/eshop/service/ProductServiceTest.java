@@ -36,7 +36,7 @@ class ProductServiceTest {
     @Test
     void testFindAllIfEmpty() {
         List<Product> savedProducts = productService.findAll();
-        assertEquals(savedProducts.size(), 0);
+        assertEquals(0, savedProducts.size());
     }
 
     
