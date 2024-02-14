@@ -3,6 +3,7 @@ plugins {
 	jacoco
 	id("org.springframework.boot") version "3.2.2"
 	id("io.spring.dependency-management") version "1.1.4"
+	id("org.sonarqube") version "4.4.1.3373"
 }
 
 group = "id.ac.ui.cs.advprog"
@@ -23,6 +24,14 @@ configurations {
 
 repositories {
 	mavenCentral()
+}
+
+sonar {
+  properties {
+    property("sonar.projectKey", "fahmi-ramadhan_eshop")
+    property("sonar.organization", "fahmi-ramadhan")
+    property("sonar.host.url", "https://sonarcloud.io")
+  }
 }
 
 val seleniumJavaVersion = "4.14.1"
@@ -77,4 +86,7 @@ tasks.test {
 
 tasks.jacocoTestReport {
 	dependsOn(tasks.test)
+        reports {
+            xml.required = true
+        }
 }
