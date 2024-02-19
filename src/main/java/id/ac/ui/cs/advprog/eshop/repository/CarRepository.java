@@ -24,6 +24,15 @@ public class CarRepository {
         return carData.iterator();
     }
 
+    public Car findById(String id){
+        for (Car car: carData){
+            if (car.getCarId().equals(id)){
+                return car;
+            }
+        }
+        return null;
+    }
+
     public Car update(String id, Car updatedCar) {
         for (int i = 0; i < carData.size(); i++) {
             Car car = carData.get(i);
