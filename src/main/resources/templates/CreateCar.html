@@ -10,7 +10,7 @@
 <div class="container">
     <h3>Create New Car</h3>
 
-    <form th:action="@{/car/createCar}" th:object="${car}" method="post">
+    <form th:action="@{/car/create}" th:object="${car}" method="post">
         <div class="form-group">
             <label for="nameInput">Name</label>
             <input th:field="*{carName}" type="text" class="form-control mb-4 col-4" id="nameInput" placeholder="Enter car' name">

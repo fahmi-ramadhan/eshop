@@ -1,11 +1,12 @@
 package id.ac.ui.cs.advprog.eshop.service;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
 import id.ac.ui.cs.advprog.eshop.repository.ProductRepository.ProductNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.util.List;
 
@@ -14,8 +15,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class ProductServiceTest {
 
-    @InjectMocks
-    ProductServiceImpl productService;
+    private ProductService productService;
+
+    @BeforeEach
+    void initService() {
+        productService = new ProductServiceImpl(new ProductRepository());
+    }
 
     @Test
     void testCreateAndFind() {
@@ -26,7 +31,7 @@ class ProductServiceTest {
         productService.create(product);
 
         List<Product> savedProducts = productService.findAll();
-        Product savedProduct = savedProducts.get(0);
+        Product savedProduct = savedProducts.getFirst();
 
         assertEquals(product.getProductId(), savedProduct.getProductId());
         assertEquals(product.getProductName(), savedProduct.getProductName());

@@ -8,7 +8,7 @@ App link: https://eshop-fahmi-ramadhan.koyeb.app/product/list
 
 # Module 01: Coding Standards
 
-<details open>
+<details>
 
 ### Reflection 1
 
@@ -34,7 +34,7 @@ I think there are still so much more to improve in my code so that it follows th
 
 # Module 02: CI/CD & DevOps
 
-<details open>
+<details>
 
 During the exercise, I addressed several code quality issues, such as:
 
@@ -43,5 +43,47 @@ During the exercise, I addressed several code quality issues, such as:
 - Removing field injection (@Autowired) and use constructor injection instead.
 
 Looking at the CI/CD workflows, I believe the current implementation has indeed achieved Continuous Integration and Continuous Deployment. Firstly, the CI pipeline triggers on every push to the repository, ensuring that changes are integrated frequently. Secondly, automated tests are run as part of the pipeline to validate the code changes. Lastly, the CD pipeline deploys the code to the PaaS environment automatically upon successful testing, enabling continuous deployment of new features and fixes. Overall, the process ensures that code changes are quickly validated, integrated, and deployed, meeting the principles of CI/CD.
+
+</details>
+
+# Module 03: Maintainability & OO Principles
+
+<details open>
+
+### 1. Explain what principles you apply to your project!
+
+1. **Single Responsibility Principle (SRP)**: Each class or module in the project should have one and only one reason to change. This means that each class or module should have only one job.
+My project follows this principle because it has separate controllers for different entities like `Car` and `Product` so that each controller class in my project has a single responsibility.
+
+
+2. **Open-Closed Principle (OCP)**: Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification. This means that I should be able to add new functionality without changing the existing code.
+My project follows this principle because I ensure that the classes and functions that I create can be extended or I can add the implementation without changing the existing code, such as using the `ProductService` interface that is implemented in `ProductServiceImpl`
+and I can add other methods in `ProductServiceImpl`.
+
+
+3. **Liskov Substitution Principle (LSP)**: Subtypes must be substitutable for their base types. This means that if a program is using a base class, it should be able to use any of its subclasses without the program knowing it.
+My project already follows this principle since there is no inheritance because i remove `ProductController` extension in `CarController`.
+
+
+4. **Interface Segregation Principle (ISP)**: Clients should not be forced to depend on interfaces they do not use. This means that a class should not have to implement methods it doesn’t use.
+My project follows this principle because I separate the interface for Car and Product (`PoductService` only relates to `Product` and `CarService` only relates to `Car`).
+
+
+5. **Dependency Inversions Principle (DIP)**: High-level modules should not depend on low-level modules. Both should depend on abstractions. This means that I should depend on abstractions, not on concrete implementations.
+My project follows this principle because I make sure all dependency I use depends on abstraction, i.e., I changed the code in my `CarController` to use `CarService` instead of `CarServiceImpl`. 
+
+
+### 2. Explain the advantages of applying SOLID principles to your project with examples.
+
+1. **Maintainability**: SOLID principles make my code more maintainable. For example, since my project follows the SRP, when a change is required in a class, it is likely to be a small change because the class has only one responsibility.
+2. **Testability**: SOLID principles make my code more testable. For example, since my project follows the DIP, I can easily swap out dependencies with mock objects when testing.
+3. **Extensibility**: SOLID principles make my code more extensible. For example, since my project follows the OCP, I can add new functionality without changing the existing code.
+
+
+### 3. Explain the disadvantages of not applying SOLID principles to your project with examples.
+
+1. **Tight Coupling**: Without applying the DIP, my classes will become tightly coupled. This makes it hard to change one class without affecting others.
+2. **Large Classes**: Without applying the SRP, my classes can become large and difficult to maintain. This can happen if I don't separate `CarController` from `ProductController` class.
+3. **Difficulty in Testing**: Without applying the DIP and ISP, my code can become difficult to test and I might have to deal with unwanted dependencies when testing a class, or I might have to implement methods that I don't need.
 
 </details>

@@ -58,8 +58,9 @@ class ProductControllerTest {
 
     @Test
     void testEditProductPage() {
-        String productId = "1";
+        String productId = "eef30a73-dcec-4aa4-84f3-50232889bd79";
         Product product = new Product();
+        product.setProductId(productId);
         when(productService.findById(productId)).thenReturn(product);
 
         String viewName = productController.editProductPage(productId, model);
@@ -69,18 +70,20 @@ class ProductControllerTest {
 
     @Test
     void testEditProductPost() {
-        String productId = "1";
+        String productId = "eef30a73-dced-4aa4-84f3-50232889bd79";
         Product editedProduct = new Product();
+        editedProduct.setProductId(productId);
 
-        String viewName = productController.editProductPost(editedProduct);
+        String viewName = productController.editProductPost(productId, editedProduct);
         assertEquals("redirect:../list", viewName);
         verify(productService).update(editedProduct);
     }
 
     @Test
     void testDeleteProduct() {
-        String productId = "1";
+        String productId = "eef30a73-dcef-4aa4-84f3-50232889bd79";
         Product product = new Product();
+        product.setProductId(productId);
         when(productService.findById(productId)).thenReturn(product);
 
         String viewName = productController.deleteProduct(productId);
