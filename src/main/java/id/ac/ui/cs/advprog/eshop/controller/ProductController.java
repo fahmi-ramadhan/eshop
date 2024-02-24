@@ -45,8 +45,10 @@ public class ProductController {
     }
 
     @PostMapping("/edit/{productId}")
-    public String editProductPost(@ModelAttribute Product editedProduct) {
-        productService.update(editedProduct);
+    public String editProductPost(@PathVariable String productId, @ModelAttribute Product editedProduct) {
+        if (productId.equals(editedProduct.getProductId())) {
+            productService.update(editedProduct);
+        }
         return "redirect:../list";
     }
 
