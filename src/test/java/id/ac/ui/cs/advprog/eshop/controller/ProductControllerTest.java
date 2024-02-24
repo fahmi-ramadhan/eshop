@@ -69,10 +69,11 @@ class ProductControllerTest {
 
     @Test
     void testEditProductPost() {
-        String productId = "1";
+        String productId = "eef30a73-dced-4aa4-84f3-50232889bd79";
         Product editedProduct = new Product();
+        editedProduct.setProductId(productId);
 
-        String viewName = productController.editProductPost(editedProduct);
+        String viewName = productController.editProductPost(productId, editedProduct);
         assertEquals("redirect:../list", viewName);
         verify(productService).update(editedProduct);
     }
