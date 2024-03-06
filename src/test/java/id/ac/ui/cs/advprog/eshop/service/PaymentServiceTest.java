@@ -46,6 +46,8 @@ public class PaymentServiceTest {
                 products, 1708570000L, "Safira Sudrajat");
         orders.add(order2);
 
+        payments = new ArrayList<>();
+
         Map<String, String> paymentDataVoucher = new HashMap<>();
         paymentDataVoucher.put("voucherCode", "ESHOP1234ABC5678");
         Payment payment1 = new Payment("544a9818-fae0-4f8d-8437-283509362d26", PaymentMethod.VOUCHER.getValue(), orders.getFirst(), paymentDataVoucher);
@@ -71,10 +73,11 @@ public class PaymentServiceTest {
     @Test
     void testAddPaymentIfAlreadyExists() {
         Payment payment = payments.get(1);
-        doReturn(payment).when(paymentRepository).addPayment(payment.getOrder(), payment.getMethod(), payment.getPaymentData());
+        when(paymentRepository.getPayment(payment.getOrder().getId())).thenReturn(payment);
 
+        paymentService.addPayment(payment.getOrder(), payment.getMethod(), payment.getPaymentData());
         assertNull(paymentService.addPayment(payment.getOrder(), payment.getMethod(), payment.getPaymentData()));
-        verify(paymentRepository, times(0)).addPayment(payment.getOrder(), payment.getMethod(), payment.getPaymentData());
+        verify(paymentRepository, times(2)).getPayment(payment.getOrder().getId());
     }
 
     @Test
