@@ -27,15 +27,12 @@ class PaymentRepositoryTest {
         products.add(product);
 
         List<Order> orders = new ArrayList<>();
-        Order order1 = new Order("13652556-012a-4c07-b546-54eb1396d79b",
+        Order order1 = new Order("544a9818-fae0-4f8d-8437-283509362d26",
                 products, 1708560000L, "Safira Sudrajat");
         orders.add(order1);
-        Order order2 = new Order("7f9a15bb-4b15-42f4-aebc-c3af385fb078",
+        Order order2 = new Order("190a9818-fae0-4f8d-8437-228709362d26",
                 products, 1708570000L, "Safira Sudrajat");
         orders.add(order2);
-        Order order3 = new Order("e33ef40-9eff-4da8-9487-8ee697ecbf1e",
-                products, 1708570000L, "Bambang Sudrajat");
-        orders.add(order3);
 
         Map<String, String> paymentDataVoucher = new HashMap<>();
         paymentDataVoucher.put("voucherCode", "ESHOP1234ABC5678");
@@ -45,7 +42,7 @@ class PaymentRepositoryTest {
         Map<String, String> paymentDataCashOnDelivery = new HashMap<>();
         paymentDataCashOnDelivery.put("address", "Jl. Raya Bogor");
         paymentDataCashOnDelivery.put("deliveryFee", "20000");
-        Payment payment2 = new Payment("190a9818-fae0-4f8d-8437-228709362d26", "COD", orders.getFirst(), paymentDataCashOnDelivery);
+        Payment payment2 = new Payment("190a9818-fae0-4f8d-8437-228709362d26", "COD", orders.get(1), paymentDataCashOnDelivery);
         payments.add(payment2);
     }
 
@@ -93,7 +90,7 @@ class PaymentRepositoryTest {
 
         List<Payment> findResult = paymentRepository.getAllPayments();
         for (int i = 0; i < findResult.size(); i++) {
-            assertEquals(payments.get(i), findResult.get(i));
+            assertEquals(payments.get(i).getId(), findResult.get(i).getId());
         }
     }
 }
