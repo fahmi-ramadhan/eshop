@@ -48,7 +48,7 @@ Looking at the CI/CD workflows, I believe the current implementation has indeed 
 
 # Module 03: Maintainability & OO Principles
 
-<details open>
+<details>
 
 ### 1. Explain what principles you apply to your project!
 
@@ -85,5 +85,38 @@ My project follows this principle because I make sure all dependency I use depen
 1. **Tight Coupling**: Without applying the DIP, my classes will become tightly coupled. This makes it hard to change one class without affecting others.
 2. **Large Classes**: Without applying the SRP, my classes can become large and difficult to maintain. This can happen if I don't separate `CarController` from `ProductController` class.
 3. **Difficulty in Testing**: Without applying the DIP and ISP, my code can become difficult to test and I might have to deal with unwanted dependencies when testing a class, or I might have to implement methods that I don't need.
+
+</details>
+
+# Module 04: Refactoring and TDD
+
+<details open>
+
+### Reflection
+
+1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.
+
+- Correctness:
+    - Do I have enough functional tests? In this tutorial, I only make unit tests.
+    - Am I testing all the edge cases thoroughly? In this tutorial, I make sure to test different scenarios, including happy and unhappy paths.
+    - Do I have tests that check whether all my components fit together properly? I'm not sure about this because I only make unit tests.
+- Maintainability:
+    - Are my tests giving me the confidence to refactor my code fearlessly and frequently? Yes, I feel more confident to refactor my code after writing the tests because I know that if I break something, the tests will catch it.
+    - Are my tests helping me to drive out a good design? Yes, I think my tests are helping me to drive out a good design because I have to think about how to test my code before I write it.
+- Productive workflow:
+    - Are my feedback cycles as fast as I would like them? Yes, I think my feedback cycles are fast because I can run my tests quickly every time I make a change.
+    - Is there some way that I could write faster integration tests that would give me feedback quicker? In this tutorial, I only make unit tests, so I'm not sure about this.
+    - Can I run a subset of the full test suite when I need to? Yes, I can run a subset of the full test suite when I need to.
+    - Am I spending too much time waiting on test to run? No, I don't think I'm spending too much time waiting on tests to run.
+
+I think the TDD flow is useful enough for me because it helps me to write better code and I feel more confident about the reliability of my code after writing the tests. However, I think I need to make more integration tests to check whether all my components fit together properly and to give me feedback quicker.
+
+2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+
+- Fast: Yes, my tests are fast because I can run my tests quickly every time I make a change.
+- Independent: Yes, my tests are independent because they don't depend on each other.
+- Repeatable: Yes, my tests are repeatable because they produce the same results every time they run.
+- Self-Validating: Yes, my tests are self-validating because they either pass or fail.
+- Thorough: Yes, my tests are thorough because I make sure to test different scenarios, including happy and unhappy paths.
 
 </details>
