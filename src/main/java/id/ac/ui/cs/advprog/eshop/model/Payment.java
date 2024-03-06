@@ -2,6 +2,9 @@ package id.ac.ui.cs.advprog.eshop.model;
 
 import java.util.Map;
 
+import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +16,6 @@ public class Payment {
     String method;
     Order order;
     Map<String, String> paymentData;
-    @Setter
     String status;
 
     public Payment(String id, String method, Order order, Map<String, String> paymentData) {
@@ -32,20 +34,20 @@ public class Payment {
     }
 
     public void setStatus(String status) {
-        if (!(status.equals("SUCCESS") || status.equals("REJECTED"))) {
+        if (!(status.equals(PaymentStatus.SUCCESS.getValue()) || status.equals(PaymentStatus.REJECTED.getValue()))) {
             throw new IllegalArgumentException("Invalid payment status");
         } else {
             this.status = status;
-            if (status.equals("SUCCESS")) {
-                order.setStatus("SUCCESS");
+            if (status.equals(PaymentStatus.SUCCESS.getValue())) {
+                order.setStatus(OrderStatus.SUCCESS.getValue());
             } else {
-                order.setStatus("FAILED");
+                order.setStatus(OrderStatus.FAILED.getValue());
             }
         }
     }
 
     public void setMethod(String method) {
-        if (method == null || !(method.equals("VOUCHER") || method.equals("COD"))) {
+        if (method == null || !(method.equals(PaymentMethod.VOUCHER.getValue()) || method.equals(PaymentMethod.COD.getValue()))) {
             throw new IllegalArgumentException("Invalid payment method");
         }
         this.method = method;
@@ -77,7 +79,7 @@ public class Payment {
 
         if (valid) {
             this.paymentData = paymentData;
-            this.setStatus("SUCCESS");
+            this.setStatus(PaymentStatus.SUCCESS.getValue());
         } else {
             throw new IllegalArgumentException("Invalid payment data");
         }
