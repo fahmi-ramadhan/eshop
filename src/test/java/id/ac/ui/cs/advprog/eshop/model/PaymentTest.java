@@ -70,6 +70,44 @@ class PaymentTest {
     }
 
     @Test
+    void testCreatePaymentSuccessStatus() {
+        paymentData.put("voucherCode", "ESHOP1234ABC5678");
+        Payment payment = new Payment("544a9818-fae0-4f8d-8437-283509362d26", "VOUCHER", order, paymentData, "SUCCESS");
+        assertSame(order, payment.getOrder());
+        assertEquals("544a9818-fae0-4f8d-8437-283509362d26", payment.getId());
+        assertEquals("VOUCHER", payment.getMethod());
+        assertEquals(paymentData, payment.getPaymentData());
+        assertEquals("SUCCESS", payment.getStatus());
+        paymentData.clear();
+    }
+
+    @Test
+    void testCreatePaymentInvalidStatus() {
+        paymentData.put("voucherCode", "ESHOP1234ABC5678");
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Payment("544a9818-fae0-4f8d-8437-283509362d26", "VOUCHER", order, paymentData, "INVALID");
+        });
+        paymentData.clear();
+    }
+
+    @Test
+    void testSetStatusToRejected() {
+        paymentData.put("voucherCode", "ESHOP1234ABC5678");
+        Payment payment = new Payment("544a9818-fae0-4f8d-8437-283509362d26", "VOUCHER", order, paymentData);
+        payment.setStatus("REJECTED");
+        assertEquals("REJECTED", payment.getStatus());
+        paymentData.clear();
+    }
+
+    @Test
+    void testSetStatusToInvalidStatus() {
+        paymentData.put("voucherCode", "ESHOP1234ABC5678");
+        Payment payment = new Payment("544a9818-fae0-4f8d-8437-283509362d26", "VOUCHER", order, paymentData);
+        assertThrows(IllegalArgumentException.class, () -> payment.setStatus("MEOW"));
+        paymentData.clear();
+    }
+
+    @Test
     void testCreatePaymentWithVoucherSuccess() {
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
         Payment payment = new Payment("544a9818-fae0-4f8d-8437-283509362d26", "VOUCHER", order, paymentData);
