@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
 import id.ac.ui.cs.advprog.eshop.model.Product;
@@ -36,13 +37,13 @@ class PaymentRepositoryTest {
 
         Map<String, String> paymentDataVoucher = new HashMap<>();
         paymentDataVoucher.put("voucherCode", "ESHOP1234ABC5678");
-        Payment payment1 = new Payment("544a9818-fae0-4f8d-8437-283509362d26", "VOUCHER", orders.getFirst(), paymentDataVoucher);
+        Payment payment1 = new Payment("544a9818-fae0-4f8d-8437-283509362d26", PaymentMethod.VOUCHER.getValue(), orders.getFirst(), paymentDataVoucher);
         payments.add(payment1);
 
         Map<String, String> paymentDataCashOnDelivery = new HashMap<>();
         paymentDataCashOnDelivery.put("address", "Jl. Raya Bogor");
         paymentDataCashOnDelivery.put("deliveryFee", "20000");
-        Payment payment2 = new Payment("190a9818-fae0-4f8d-8437-228709362d26", "COD", orders.get(1), paymentDataCashOnDelivery);
+        Payment payment2 = new Payment("190a9818-fae0-4f8d-8437-228709362d26", PaymentMethod.COD.getValue(), orders.get(1), paymentDataCashOnDelivery);
         payments.add(payment2);
     }
 
