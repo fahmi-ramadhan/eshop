@@ -109,6 +109,19 @@ class PaymentTest {
     }
 
     @Test
+    void testCreatePaymentWithCodSuccess() {
+        paymentData.put("address", "Jl. Raya Bogor");
+        paymentData.put("deliveryFee", "20000");
+        Payment payment = new Payment("544a9818-fae0-4f8d-8437-283509362d26", "COD", order, paymentData);
+        assertSame(order, payment.getOrder());
+        assertEquals("544a9818-fae0-4f8d-8437-283509362d26", payment.getId());
+        assertEquals("COD", payment.getMethod());
+        assertEquals(paymentData, payment.getPaymentData());
+        assertEquals("SUCCESS", payment.getStatus());
+        paymentData.clear();
+    }
+
+    @Test
     void testCreatePaymentWithCodEmptyAddress() {
         paymentData.put("address", "");
         paymentData.put("deliveryFee", "20000");
